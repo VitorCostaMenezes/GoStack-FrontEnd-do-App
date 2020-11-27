@@ -1,0 +1,17 @@
+criar projeto react com typescript
+    yarn create react-app 05-primeiro-projeto-react --template typescript
+
+realizar limpeza da pasta src
+manter apenas os arquivos:
+    app. tsx
+    index.tsx
+    react-app-env.d.tsx
+    setupTests.ts
+
+
+se ocorrrer o erro :
+    Argument for '--jsx' option must be: 'preserve', 'react-native', 'react'.ts
+Abrir um arquivo tsx
+depois ir no canto inferior direito e alterar a versão 
+
+
