@@ -1,10 +1,12 @@
 import React, { useCallback, useRef } from 'react';
+// para usar o react icons é necessário instalar o pacote
 import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
 import { Link, useHistory } from 'react-router-dom';
 
+// importando o contexto
 import { useAuth } from '../../hooks/auth';
 import { useToast } from '../../hooks/toast';
 import getValidationErrors from '../../utils/getValidationErrors';
@@ -16,6 +18,7 @@ import Button from '../../components/Button';
 
 import { Container, Content, AnimationContainer, Background } from './styles';
 
+// criando uma interface para especificar quais dados vão ser recebidos pelo formulário
 interface SignInFormData {
   email: string;
   password: string;
@@ -34,6 +37,7 @@ const SignIn: React.FC = () => {
       try {
         formRef.current?.setErrors({});
 
+        // criando um schema de validação dos dados
         const schema = Yup.object().shape({
           email: Yup.string()
             .email('Digite um e-mail válido')
@@ -41,10 +45,15 @@ const SignIn: React.FC = () => {
           password: Yup.string().required('Senha obrigatória'),
         });
 
+        // faz a validação com base nas propriedades recebidas no data do Form
+        // e compara com o schema de validação criado
         await schema.validate(data, {
           abortEarly: false,
         });
 
+        // se passar na validação anterior executa este bloco
+        // enviando o email e o password que estão contidos em data
+        // o data do handle submit puxou do Form todas as informações necessárias
         await signIn({
           email: data.email,
           password: data.password,
@@ -52,6 +61,8 @@ const SignIn: React.FC = () => {
 
         history.push('/dashboard');
       } catch (err) {
+        //  verifica se o erro é uma instancia de yup,
+        // ou seja, se esta relacionado a verificação acima
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
 
@@ -60,6 +71,7 @@ const SignIn: React.FC = () => {
           return;
         }
 
+        // disparando o toast
         addToast({
           type: 'error',
           title: 'Erro na autenticação',

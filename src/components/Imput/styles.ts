@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 
+// o toltip foi importado diretamente dentro do estilo
 import Tooltip from '../Tooltip';
 
 interface ContainerProps {
@@ -21,7 +22,7 @@ export const Container = styled.div<ContainerProps>`
   & + div {
     margin-top: 8px;
   }
-
+  //verifica se existe esse erro no containr, se existir alterar a borda
   ${props =>
     props.isErrored &&
     css`
