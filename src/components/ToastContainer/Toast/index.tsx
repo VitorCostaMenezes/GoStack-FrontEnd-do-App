@@ -22,6 +22,7 @@ const icons = {
 };
 
 const Toast: React.FC<ToastProps> = ({ message, style }) => {
+  // desestruturando a função removetoast do usetoast
   const { removeToast } = useToast();
 
   useEffect(() => {

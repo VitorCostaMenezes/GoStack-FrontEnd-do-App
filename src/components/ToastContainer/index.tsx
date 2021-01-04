@@ -1,4 +1,5 @@
 import React from 'react';
+// necessãrio instalar o pacote e importar para usar as animações
 import { useTransition } from 'react-spring';
 import Toast from './Toast';
 

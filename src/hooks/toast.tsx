@@ -3,6 +3,7 @@ import { v4 as uuid } from 'uuid';
 
 import ToastContainer from '../components/ToastContainer';
 
+// criando uma interface de tipagem para o toast message
 export interface ToastMessage {
   id: string;
   type?: 'info' | 'success' | 'error';
@@ -15,9 +16,11 @@ interface ToastContextData {
   removeToast(id: string): void;
 }
 
+// criando um contexto e inicializando como um objeto vazio
 const ToastContext = createContext<ToastContextData>({} as ToastContextData);
 
 const ToastProvider: React.FC = ({ children }) => {
+  // criando um state de inicializando vazio
   const [messages, setMessages] = useState<ToastMessage[]>([]);
 
   const addToast = useCallback(
@@ -43,6 +46,7 @@ const ToastProvider: React.FC = ({ children }) => {
   return (
     <ToastContext.Provider value={{ addToast, removeToast }}>
       {children}
+      {/* importando o toast container */}
       <ToastContainer messages={messages} />
     </ToastContext.Provider>
   );
